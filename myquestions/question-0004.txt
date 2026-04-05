@@ -1,0 +1,38 @@
+Problema: Intervalos de Confianza para Predicciones mediante Bootstrap
+
+El Problema:
+Cuando entrenas un modelo de regresión, obtener una sola predicción
+no siempre es suficiente. En muchos contextos es importante saber
+qué tan confiable es esa predicción. Una técnica común para esto es
+el bootstrap, que consiste en entrenar el modelo múltiples veces sobre
+muestras aleatorias de los datos de entrenamiento y observar la
+variabilidad de las predicciones resultantes.
+
+Tu Misión:
+Escribe una función llamada `intervalo_confianza_bootstrap(X_train,
+y_train, X_test, n_bootstrap, confianza)` que realice lo siguiente:
+
+1. Repita `n_bootstrap` veces:
+   - Tome una muestra aleatoria con reemplazo del mismo tamaño que
+     los datos de entrenamiento usando numpy.
+   - Entrene un modelo `LinearRegression` de sklearn sobre esa muestra.
+   - Genere predicciones sobre `X_test` y almacénelas.
+2. Para cada punto de `X_test`, calcule el intervalo de confianza
+   usando los percentiles de las predicciones acumuladas:
+   - `limite_inferior`: percentil ((1 - confianza) / 2) * 100
+   - `limite_superior`: percentil (1 - (1 - confianza) / 2) * 100
+3. Devuelva un DataFrame de pandas con dos columnas: `limite_inferior`
+   y `limite_superior`, redondeadas a 4 decimales, donde cada fila
+   corresponde a un punto de `X_test`.
+
+Argumentos:
+- X_train (np.array): Matriz de características de entrenamiento.
+- y_train (np.array): Vector objetivo de entrenamiento.
+- X_test (np.array): Matriz de características de prueba.
+- n_bootstrap (int): Número de iteraciones bootstrap (ej: 100).
+- confianza (float): Nivel de confianza entre 0 y 1 (ej: 0.95
+  para un intervalo del 95%).
+
+Retorna:
+- pd.DataFrame con columnas `limite_inferior` y `limite_superior`,
+  redondeadas a 4 decimales, con una fila por cada punto de X_test.

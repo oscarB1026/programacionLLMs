@@ -1,0 +1,40 @@
+Problema: Pipeline de Preprocesamiento y Regresión con SVR
+
+El Problema:
+Tienes un DataFrame con datos numéricos y necesitas construir un
+pipeline completo de preprocesamiento y modelado. Para garantizar
+que el escalado y el modelo se apliquen correctamente en conjunto,
+debes usar el objeto Pipeline de sklearn que encadena los pasos
+de transformación y entrenamiento de forma ordenada.
+
+Tu Misión:
+Escribe una función llamada `pipeline_svr(df, target_col, test_size)`
+que realice lo siguiente:
+
+1. Separe las características (X) de la variable objetivo (y),
+   especificada por `target_col`.
+2. Divida los datos en conjunto de entrenamiento y prueba usando
+   `train_test_split` de sklearn, con el tamaño de prueba especificado
+   por `test_size` y `random_state=42`.
+3. Construya un Pipeline de sklearn con los siguientes pasos:
+   - `StandardScaler` para escalar las características.
+   - `SVR` (Support Vector Regression) de `sklearn.svm` como modelo
+     de regresión.
+4. Entrene el pipeline con los datos de entrenamiento.
+5. Realice predicciones sobre el conjunto de prueba.
+6. Calcule el MAE (Mean Absolute Error) de `sklearn.metrics` sobre
+   el conjunto de prueba, redondeado a 4 decimales.
+7. Devuelva una tupla con dos elementos: el array de predicciones
+   (`y_pred`) y el MAE (`mae`).
+
+Argumentos:
+- df (pd.DataFrame): DataFrame con los datos numéricos.
+- target_col (str): Nombre de la columna que contiene la variable
+  objetivo.
+- test_size (float): Proporción del conjunto de prueba (ej: 0.2
+  para 20%).
+
+Retorna:
+- Tupla (y_pred, mae) donde:
+    * y_pred (np.array): Array con las predicciones del modelo.
+    * mae (float): Mean Absolute Error redondeado a 4 decimales.
